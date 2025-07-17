@@ -46,10 +46,10 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        scrolled ? 'glass-morphic backdrop-blur-md' : ''
+      <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 w-full ${
+        scrolled ? 'w-full  backdrop-blur-md' : ''
       }`}>
-        <div className="container mx-auto px-6 py-4">
+        <div className="w-full px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="text-2xl font-bold text-glow cursor-pointer" onClick={() => scrollToSection('#home')}>

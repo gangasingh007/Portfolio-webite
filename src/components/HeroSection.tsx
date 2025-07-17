@@ -96,7 +96,7 @@ const HeroSection = () => {
       </div>
 
       {/* Floating Orbs */}
-      {[...Array(8)].map((_, i) => (
+      {/* {[...Array(8)].map((_, i) => (
         <div
           key={i}
           className={`floating-orb absolute w-4 h-4 rounded-full opacity-60 animate-pulse-glow z-10`}
@@ -108,7 +108,7 @@ const HeroSection = () => {
             animationDelay: `${Math.random() * 2}s`
           }}
         />
-      ))}
+      ))} */}
 
       {/* Content */}
       <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">

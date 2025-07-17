@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from 'react';
-import { Send, Github, Linkedin, Mail } from 'lucide-react';
+import { Send, Github, Linkedin, Mail, Twitter, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -16,6 +15,7 @@ const ContactSection = () => {
     email: '',
     message: ''
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const ContactSection = () => {
           ease: "power2.out"
         });
       });
-      
+
       icon.addEventListener('mouseleave', () => {
         gsap.to(icon, {
           scale: 1,
@@ -80,31 +80,28 @@ const ContactSection = () => {
         });
       });
     });
-
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     setTimeout(() => {
       toast({
         title: "Message Sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
       });
-      
+
       setFormData({ name: '', email: '', message: '' });
       setIsSubmitting(false);
-      
-      // Submit button animation
+
       gsap.to('.submit-btn', {
         scale: 1.1,
         duration: 0.2,
@@ -118,39 +115,45 @@ const ContactSection = () => {
   const socialLinks = [
     {
       icon: Github,
-      href: "https://github.com",
+      href: "https://github.com/gangasingh",
       label: "GitHub",
       color: "hover:text-white"
     },
     {
-      icon: Linkedin,
-      href: "https://linkedin.com",
-      label: "LinkedIn", 
+      icon: Twitter,
+      href: "https://x.com/gangasingh1734",
+      label: "Twitter",
       color: "hover:text-blue-400"
     },
     {
       icon: Mail,
-      href: "mailto:ganga@example.com",
+      href: "mailto:gangsingh1734@gmail.com",
       label: "Email",
       color: "hover:text-red-400"
+    },
+    {
+      icon: Instagram,
+      href: "https://www.instagram.com/ganga.singh.007/",
+      label: "Instagram",
+      color: "hover:text-pink-400"
     }
   ];
 
   return (
     <section id="contact" className="py-20 px-6 relative">
       <div className="contact-container container mx-auto max-w-6xl">
-        <h2 className="contact-title text-4xl md:text-5xl font-bold text-center mb-16 text-glow">
+        <h2 className="contact-title text-4xl md:text-5xl font-bold text-center mb-16 text-glow max-w-2xl mx-auto">
           Let's Work Together
         </h2>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-12 lg:gap-16">
           {/* Contact Form */}
-          <div className="contact-form">
-            <div className="glass-morphic rounded-2xl p-8 glow-effect">
-              <h3 className="text-2xl font-semibold mb-6 text-foreground">
+          <div className="contact-form w-full max-w-xl">
+            <div className="glass-morphic rounded-2xl p-6 w-full glow-effect">
+              <h3 className="text-2xl font-semibold mb-6 text-foreground text-center">
                 Send me a message
               </h3>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="form-input">
                   <Input
@@ -163,7 +166,7 @@ const ContactSection = () => {
                     className="glass-morphic border-border/50 focus:border-primary focus:glow-effect transition-all duration-300"
                   />
                 </div>
-                
+
                 <div className="form-input">
                   <Input
                     type="email"
@@ -175,7 +178,7 @@ const ContactSection = () => {
                     className="glass-morphic border-border/50 focus:border-primary focus:glow-effect transition-all duration-300"
                   />
                 </div>
-                
+
                 <div className="form-input">
                   <Textarea
                     name="message"
@@ -187,7 +190,7 @@ const ContactSection = () => {
                     className="glass-morphic border-border/50 focus:border-primary focus:glow-effect transition-all duration-300 resize-none"
                   />
                 </div>
-                
+
                 <Button
                   type="submit"
                   disabled={isSubmitting}
@@ -205,21 +208,20 @@ const ContactSection = () => {
           </div>
 
           {/* Contact Info & Social */}
-          <div className="contact-social space-y-8">
+          <div className="contact-social w-full max-w-xl space-y-8">
             <div className="glass-morphic rounded-2xl p-8">
               <h3 className="text-2xl font-semibold mb-6 text-foreground">
                 Get in touch
               </h3>
-              
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                Ready to bring your ideas to life? I'm always excited to work on new projects 
+                Ready to bring your ideas to life? I'm always excited to work on new projects
                 and collaborate with amazing people. Let's create something extraordinary together.
               </p>
 
               <div className="space-y-4 mb-8">
                 <div className="flex items-center space-x-3">
                   <Mail className="text-primary" size={20} />
-                  <span className="text-muted-foreground">ganga@example.com</span>
+                  <span className="text-muted-foreground">gangasingh1734@gmail.com</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <i className="i-ph-map-pin text-primary text-xl"></i>
@@ -228,7 +230,7 @@ const ContactSection = () => {
               </div>
 
               {/* Social Links */}
-              <div className="flex space-x-6">
+              <div className="flex justify-center lg:justify-start space-x-6">
                 {socialLinks.map((social) => (
                   <a
                     key={social.label}

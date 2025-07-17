@@ -76,58 +76,58 @@ const ProjectsSection = () => {
   const projects = [
     {
       id: 1,
-      title: "AuthKit Login System",
-      description: "A modern authentication system with sleek UI and secure backend integration.",
-      image: "/lovable-uploads/e3aa89a5-113a-48de-9741-bf7eb64ca803.png",
-      tech: ["React", "Node.js", "MongoDB", "JWT"],
-      githubUrl: "#",
+      title: "UniConnect",
+      description: "A modern study material and resources website designed to ease the prepration of exams for university students and AI summarizer wiht just one click with super sleek UI.",
+      image: "https://www.shutterstock.com/image-vector/coming-soon-on-dark-background-600nw-2364512887.jpg",
+      tech: ["React", "Node.js", "MongoDB", "JWT" ,"Tailwind CSS","Gemini API","PDF-parser"],
+      githubUrl: "https://github.com/gangasingh007/Uniconnect",
       liveUrl: "#"
     },
     {
       id: 2,
-      title: "3D Gaming Interface",
-      description: "Immersive gaming UI with 3D elements and smooth animations using Three.js.",
-      image: "/lovable-uploads/48b92f92-12fa-4034-9933-6239e31f1089.png",
-      tech: ["React", "Three.js", "GSAP", "WebGL"],
+      title: "Invetora",
+      description: "An Ecomm Site with minimilistic UI with Eco Friendly delivery system and reward System with role based authentication",
+      image: "/lovable-uploads/inventora.png",
+      tech: ["Nextjs", "JWT", "MONGODB"],
       githubUrl: "#",
-      liveUrl: "#"
+      liveUrl: "https://inventora-ecomm-project.vercel.app/"
     },
     {
       id: 3,
-      title: "Developer Portfolio",
-      description: "A futuristic portfolio website with 3D interactions and smooth scrolling.",
-      image: "/lovable-uploads/2289df3a-3fc4-4007-84ed-5e157884e599.png",
-      tech: ["React", "Spline", "GSAP", "Tailwind"],
-      githubUrl: "#",
-      liveUrl: "#"
+      title: "Carbon Track - Landing Page",
+      description: "A good looking landing Page for a service to track carbon emission and provide services to clients",
+      image: "/lovable-uploads/carbon.png",
+      tech: ["React","Framer-Motion", "Tailwind"],
+      githubUrl: "https://github.com/gangasingh007/frontend",
+      liveUrl: "https://ganga-frontend-project.netlify.app/"
     },
     {
       id: 4,
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with real-time inventory and payment integration.",
-      image: "/lovable-uploads/e3aa89a5-113a-48de-9741-bf7eb64ca803.png",
-      tech: ["Next.js", "Stripe", "PostgreSQL", "Redis"],
-      githubUrl: "#",
+      title: "Banking App",
+      description: "A simple banking/payment backend API built with Node.js, Express, and MongoDB.",
+      image: "https://www.shutterstock.com/image-vector/coming-soon-on-dark-background-600nw-2364512887.jpg",
+      tech: ["React", "NodeJs", "MongoDb", "JWT"],
+      githubUrl: "https://github.com/gangasingh007/Payment-Project",
       liveUrl: "#"
     },
     {
       id: 5,
-      title: "AI Dashboard",
-      description: "Analytics dashboard with AI-powered insights and real-time data visualization.",
-      image: "/lovable-uploads/48b92f92-12fa-4034-9933-6239e31f1089.png",
-      tech: ["Vue.js", "Python", "TensorFlow", "D3.js"],
+      title: "Notes App",
+      description: "A simple Notes app from where you can download your course notes and lower your hassle to finding the accurate study material.",
+      image: "/lovable-uploads/notes.png",
+      tech: ["HTML","CSS","JS"],
       githubUrl: "#",
-      liveUrl: "#"
+      liveUrl: "https://notes-library-ganga.netlify.app/"
     },
-    {
-      id: 6,
-      title: "Social Media App",
-      description: "Real-time social platform with chat, posts, and interactive features.",
-      image: "/lovable-uploads/2289df3a-3fc4-4007-84ed-5e157884e599.png",
-      tech: ["React Native", "Firebase", "WebRTC", "Redux"],
-      githubUrl: "#",
-      liveUrl: "#"
-    }
+    // {
+    //   id: 6,
+    //   title: "Social Media App",
+    //   description: "Real-time social platform with chat, posts, and interactive features.",
+    //   image: "/lovable-uploads/2289df3a-3fc4-4007-84ed-5e157884e599.png",
+    //   tech: ["React Native", "Firebase", "WebRTC", "Redux"],
+    //   githubUrl: "#",
+    //   liveUrl: "#"
+    // }
   ];
 
   return (

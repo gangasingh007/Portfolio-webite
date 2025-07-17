@@ -119,7 +119,7 @@ const AboutSection = () => {
             </p>
 
             {/* Skills Grid */}
-            <div className="grid grid-cols-4 md:grid-cols-4 gap-6">
+            {/* <div className="grid grid-cols-4 md:grid-cols-4 gap-6">
               {skills.map((skill, index) => (
                 <div
                   key={skill.name}
@@ -133,7 +133,7 @@ const AboutSection = () => {
                   </span>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -104,9 +104,9 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-muted-foreground">
-            <span>© 2024 Ganga Singh. Made with</span>
+            <span>© 2025 Ganga Singh. Made with</span>
             <Heart size={16} className="text-red-400 animate-pulse" />
-            <span>and lots of coffee</span>
+            <span>and lots of hustle</span>
           </div>
 
           {/* Tech Stack Credits */}
