@@ -85,7 +85,7 @@ const ProjectsSection = () => {
     },
     {
       id: 2,
-      title: "Invetora",
+      title: "Inventora",
       description: "An Ecomm Site with minimilistic UI with Eco Friendly delivery system and reward System with role based authentication",
       image: "/lovable-uploads/inventora.png",
       tech: ["Nextjs", "JWT", "MONGODB"],
