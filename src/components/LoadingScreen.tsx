@@ -46,8 +46,8 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
       duration: 1,
       ease: "power2.inOut",
       onComplete: () => {
+        // Let React handle the unmounting, don't manually remove DOM elements
         onComplete();
-        document.querySelector(".preloader")?.remove();
       }
     });
 
@@ -64,6 +64,12 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
         from: "random"
       }
     });
+
+    // Cleanup function to kill animations when component unmounts
+    return () => {
+      tl.kill();
+      gsap.killTweensOf(".particle");
+    };
 
   }, [onComplete]);
 
