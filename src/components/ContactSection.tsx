@@ -6,16 +6,12 @@ import { Textarea } from '@/components/ui/textarea';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { toast } from '@/hooks/use-toast';
+import { motion } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -33,33 +29,11 @@ const ContactSection = () => {
     });
 
     contactTimeline
-      .to(".contact-title", {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out"
-      })
-      .to(".contact-form", {
-        opacity: 1,
-        x: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "-=0.5")
-      .to(".contact-social", {
-        opacity: 1,
-        x: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "-=0.6")
-      .to(".form-input", {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: "power2.out"
-      }, "-=0.4");
+      .to(".contact-title", { opacity: 1, y: 0, duration: 1, ease: "power3.out" })
+      .to(".contact-form", { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" }, "-=0.5")
+      .to(".contact-social", { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" }, "-=0.6")
+      .to(".form-input", { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power2.out" }, "-=0.4");
 
-    // Social icons hover effects
     const socialIcons = document.querySelectorAll('.social-icon');
     socialIcons.forEach((icon) => {
       icon.addEventListener('mouseenter', () => {
@@ -70,7 +44,6 @@ const ContactSection = () => {
           ease: "power2.out"
         });
       });
-
       icon.addEventListener('mouseleave', () => {
         gsap.to(icon, {
           scale: 1,
@@ -83,10 +56,7 @@ const ContactSection = () => {
   }, []);
 
   const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -98,7 +68,6 @@ const ContactSection = () => {
         title: "Message Sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
       });
-
       setFormData({ name: '', email: '', message: '' });
       setIsSubmitting(false);
 
@@ -140,20 +109,35 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 px-6 relative">
+    <motion.section
+      id="contact"
+      className="py-20 px-6 relative"
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+    >
       <div className="contact-container container mx-auto max-w-6xl">
-        <h2 className="contact-title text-4xl md:text-5xl font-bold text-center mb-16 text-glow max-w-2xl mx-auto">
+        <motion.h2
+          className="contact-title text-4xl md:text-5xl font-bold text-center mb-16 text-glow max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+        >
           Let's Work Together
-        </h2>
+        </motion.h2>
 
         <div className="flex flex-col lg:flex-row justify-center items-center gap-12 lg:gap-16">
           {/* Contact Form */}
-          <div className="contact-form w-full max-w-xl">
+          <motion.div
+            className="contact-form w-full max-w-xl"
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            viewport={{ once: true }}
+          >
             <div className="glass-morphic rounded-2xl p-6 w-full glow-effect">
-              <h3 className="text-2xl font-semibold mb-6 text-foreground text-center">
-                Send me a message
-              </h3>
-
+              <h3 className="text-2xl font-semibold mb-6 text-foreground text-center">Send me a message</h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="form-input">
                   <Input
@@ -166,7 +150,6 @@ const ContactSection = () => {
                     className="glass-morphic border-border/50 focus:border-primary focus:glow-effect transition-all duration-300"
                   />
                 </div>
-
                 <div className="form-input">
                   <Input
                     type="email"
@@ -178,7 +161,6 @@ const ContactSection = () => {
                     className="glass-morphic border-border/50 focus:border-primary focus:glow-effect transition-all duration-300"
                   />
                 </div>
-
                 <div className="form-input">
                   <Textarea
                     name="message"
@@ -190,7 +172,6 @@ const ContactSection = () => {
                     className="glass-morphic border-border/50 focus:border-primary focus:glow-effect transition-all duration-300 resize-none"
                   />
                 </div>
-
                 <Button
                   type="submit"
                   disabled={isSubmitting}
@@ -205,19 +186,22 @@ const ContactSection = () => {
                 </Button>
               </form>
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact Info & Social */}
-          <div className="contact-social w-full max-w-xl space-y-8">
+          <motion.div
+            className="contact-social w-full max-w-xl space-y-8"
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            viewport={{ once: true }}
+          >
             <div className="glass-morphic rounded-2xl p-8">
-              <h3 className="text-2xl font-semibold mb-6 text-foreground">
-                Get in touch
-              </h3>
+              <h3 className="text-2xl font-semibold mb-6 text-foreground">Get in touch</h3>
               <p className="text-muted-foreground mb-8 leading-relaxed">
                 Ready to bring your ideas to life? I'm always excited to work on new projects
                 and collaborate with amazing people. Let's create something extraordinary together.
               </p>
-
               <div className="space-y-4 mb-8">
                 <div className="flex items-center space-x-3">
                   <Mail className="text-primary" size={20} />
@@ -256,14 +240,26 @@ const ContactSection = () => {
                 Currently accepting freelance work and full-time opportunities
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
       {/* Background Elements */}
-      <div className="absolute top-1/4 left-10 w-64 h-64 bg-gradient-to-r from-primary/10 to-transparent rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-10 w-48 h-48 bg-gradient-to-l from-accent/10 to-transparent rounded-full blur-3xl"></div>
-    </section>
+      <motion.div
+        className="absolute top-1/4 left-10 w-64 h-64 bg-gradient-to-r from-primary/10 to-transparent rounded-full blur-3xl"
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+      />
+      <motion.div
+        className="absolute bottom-1/4 right-10 w-48 h-48 bg-gradient-to-l from-accent/10 to-transparent rounded-full blur-3xl"
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+      />
+    </motion.section>
   );
 };
 
