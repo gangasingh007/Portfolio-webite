@@ -1,0 +1,268 @@
+
+import { useState, useEffect } from 'react';
+import { Send, Github, Linkedin, Mail } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { toast } from '@/hooks/use-toast';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    gsap.set(".contact-title", { opacity: 0, y: 50 });
+    gsap.set(".contact-form", { opacity: 0, x: -50 });
+    gsap.set(".contact-social", { opacity: 0, x: 50 });
+    gsap.set(".form-input", { opacity: 0, y: 30 });
+
+    const contactTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".contact-container",
+        start: "top 80%",
+        toggleActions: "play none none reverse"
+      }
+    });
+
+    contactTimeline
+      .to(".contact-title", {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out"
+      })
+      .to(".contact-form", {
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.5")
+      .to(".contact-social", {
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.6")
+      .to(".form-input", {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "power2.out"
+      }, "-=0.4");
+
+    // Social icons hover effects
+    const socialIcons = document.querySelectorAll('.social-icon');
+    socialIcons.forEach((icon) => {
+      icon.addEventListener('mouseenter', () => {
+        gsap.to(icon, {
+          scale: 1.2,
+          rotation: 10,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+      
+      icon.addEventListener('mouseleave', () => {
+        gsap.to(icon, {
+          scale: 1,
+          rotation: 0,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+    });
+
+  }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Simulate form submission
+    setTimeout(() => {
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+      
+      setFormData({ name: '', email: '', message: '' });
+      setIsSubmitting(false);
+      
+      // Submit button animation
+      gsap.to('.submit-btn', {
+        scale: 1.1,
+        duration: 0.2,
+        yoyo: true,
+        repeat: 1,
+        ease: "power2.inOut"
+      });
+    }, 2000);
+  };
+
+  const socialLinks = [
+    {
+      icon: Github,
+      href: "https://github.com",
+      label: "GitHub",
+      color: "hover:text-white"
+    },
+    {
+      icon: Linkedin,
+      href: "https://linkedin.com",
+      label: "LinkedIn", 
+      color: "hover:text-blue-400"
+    },
+    {
+      icon: Mail,
+      href: "mailto:ganga@example.com",
+      label: "Email",
+      color: "hover:text-red-400"
+    }
+  ];
+
+  return (
+    <section id="contact" className="py-20 px-6 relative">
+      <div className="contact-container container mx-auto max-w-6xl">
+        <h2 className="contact-title text-4xl md:text-5xl font-bold text-center mb-16 text-glow">
+          Let's Work Together
+        </h2>
+
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          {/* Contact Form */}
+          <div className="contact-form">
+            <div className="glass-morphic rounded-2xl p-8 glow-effect">
+              <h3 className="text-2xl font-semibold mb-6 text-foreground">
+                Send me a message
+              </h3>
+              
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="form-input">
+                  <Input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="glass-morphic border-border/50 focus:border-primary focus:glow-effect transition-all duration-300"
+                  />
+                </div>
+                
+                <div className="form-input">
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="glass-morphic border-border/50 focus:border-primary focus:glow-effect transition-all duration-300"
+                  />
+                </div>
+                
+                <div className="form-input">
+                  <Textarea
+                    name="message"
+                    placeholder="Your Message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
+                    rows={5}
+                    className="glass-morphic border-border/50 focus:border-primary focus:glow-effect transition-all duration-300 resize-none"
+                  />
+                </div>
+                
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="submit-btn w-full bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-secondary text-lg py-3 rounded-xl glow-effect disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <div className="loading-spinner mr-2"></div>
+                  ) : (
+                    <Send size={20} className="mr-2" />
+                  )}
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </Button>
+              </form>
+            </div>
+          </div>
+
+          {/* Contact Info & Social */}
+          <div className="contact-social space-y-8">
+            <div className="glass-morphic rounded-2xl p-8">
+              <h3 className="text-2xl font-semibold mb-6 text-foreground">
+                Get in touch
+              </h3>
+              
+              <p className="text-muted-foreground mb-8 leading-relaxed">
+                Ready to bring your ideas to life? I'm always excited to work on new projects 
+                and collaborate with amazing people. Let's create something extraordinary together.
+              </p>
+
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center space-x-3">
+                  <Mail className="text-primary" size={20} />
+                  <span className="text-muted-foreground">ganga@example.com</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <i className="i-ph-map-pin text-primary text-xl"></i>
+                  <span className="text-muted-foreground">Available Worldwide</span>
+                </div>
+              </div>
+
+              {/* Social Links */}
+              <div className="flex space-x-6">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`social-icon w-12 h-12 glass-morphic rounded-xl flex items-center justify-center transition-all duration-300 hover:glow-effect ${social.color}`}
+                    aria-label={social.label}
+                  >
+                    <social.icon size={24} />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Availability Status */}
+            <div className="glass-morphic rounded-2xl p-6">
+              <div className="flex items-center space-x-3">
+                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-foreground font-medium">Available for new projects</span>
+              </div>
+              <p className="text-muted-foreground text-sm mt-2">
+                Currently accepting freelance work and full-time opportunities
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Background Elements */}
+      <div className="absolute top-1/4 left-10 w-64 h-64 bg-gradient-to-r from-primary/10 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 right-10 w-48 h-48 bg-gradient-to-l from-accent/10 to-transparent rounded-full blur-3xl"></div>
+    </section>
+  );
+};
+
+export default ContactSection;
