@@ -79,56 +79,53 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-20 px-6 relative">
-      <div className="about-container container mx-auto max-w-6xl">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+    <section id="about" className="py-14 px-3 sm:py-16 sm:px-6 md:py-20 md:px-8 relative">
+      <div className="about-container mx-auto max-w-6xl w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Profile Image */}
-          <div className="about-image flex justify-center lg:justify-start">
+          <div className="about-image flex justify-center lg:justify-start mb-10 lg:mb-0">
             <div className="relative">
-              <div className="w-80 h-80 rounded-full glass-morphic glow-purple p-4">
+              <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full glass-morphic glow-purple p-2 sm:p-4">
                 <img
                   src="/lovable-uploads/6e3785ea-e9c2-4e22-8e31-0f42a7ce2865.png"
                   alt="Ganga Singh"
                   className="profile-image w-full h-full object-cover rounded-full"
                 />
               </div>
-              
               {/* Floating elements around image */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 rounded-full bg-gradient-to-r from-primary to-accent animate-float opacity-60"></div>
-              <div className="absolute -bottom-6 -left-6 w-6 h-6 rounded-full bg-gradient-to-r from-accent to-secondary animate-float-delayed opacity-60"></div>
+              <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-primary to-accent animate-float opacity-60"></div>
+              <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-accent to-secondary animate-float-delayed opacity-60"></div>
             </div>
           </div>
 
           {/* About Content */}
           <div className="about-content">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-glow">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 sm:mb-6 text-glow">
               About Me
             </h2>
-            
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
               I'm a passionate Full Stack Web Developer with expertise in modern technologies. 
               I love creating immersive digital experiences that combine beautiful design with 
               powerful functionality. My focus is on delivering high-quality, scalable solutions 
               that exceed client expectations.
             </p>
-
-            <p className="text-lg text-muted-foreground mb-12 leading-relaxed">
+            <p className="text-base sm:text-lg text-muted-foreground mb-8 sm:mb-12 leading-relaxed">
               With a strong foundation in both frontend and backend development, I specialize 
               in React, Node.js, and cutting-edge animation libraries like GSAP to bring 
               ideas to life.
             </p>
 
             {/* Skills Grid */}
-            {/* <div className="grid grid-cols-4 md:grid-cols-4 gap-6">
+            {/* <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 gap-4 sm:gap-6">
               {skills.map((skill, index) => (
                 <div
                   key={skill.name}
                   className="skill-icon flex flex-col items-center group cursor-pointer"
                 >
-                  <div className="w-16 h-16 glass-morphic rounded-xl flex items-center justify-center mb-3 group-hover:glow-effect transition-all duration-300 group-hover:scale-110">
-                    <i className={`${skill.icon} text-2xl text-primary`}></i>
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 glass-morphic rounded-xl flex items-center justify-center mb-2 sm:mb-3 group-hover:glow-effect transition-all duration-300 group-hover:scale-110">
+                    <i className={`${skill.icon} text-xl sm:text-2xl text-primary`}></i>
                   </div>
-                  <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors text-center">
+                  <span className="text-xs sm:text-sm text-muted-foreground group-hover:text-foreground transition-colors text-center">
                     {skill.name}
                   </span>
                 </div>
@@ -139,8 +136,8 @@ const AboutSection = () => {
       </div>
 
       {/* Background Elements */}
-      <div className="absolute top-1/4 left-10 w-64 h-64 bg-gradient-to-r from-primary/10 to-transparent rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-10 w-48 h-48 bg-gradient-to-l from-accent/10 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute top-1/4 left-2 sm:left-10 w-40 h-40 sm:w-64 sm:h-64 bg-gradient-to-r from-primary/10 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 right-2 sm:right-10 w-28 h-28 sm:w-48 sm:h-48 bg-gradient-to-l from-accent/10 to-transparent rounded-full blur-3xl"></div>
     </section>
   );
 };
