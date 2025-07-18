@@ -8,70 +8,7 @@ import { motion } from 'framer-motion';
 gsap.registerPlugin(ScrollTrigger);
 
 const ProjectsSection = () => {
-  useEffect(() => {
-    const projectCards = document.querySelectorAll('.project-card');
-
-    gsap.set(".projects-title", { opacity: 0, y: 50 });
-    gsap.set(".project-card", { opacity: 0, y: 80, scale: 0.9 });
-
-    // Title animation
-    gsap.to(".projects-title", {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".projects-container",
-        start: "top 80%",
-        toggleActions: "play none none reverse"
-      }
-    });
-
-    // Cards animation
-    gsap.to(".project-card", {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".projects-grid",
-        start: "top 80%",
-        toggleActions: "play none none reverse"
-      }
-    });
-
-    // Hover effects
-    projectCards.forEach((card) => {
-      card.addEventListener('mouseenter', () => {
-        gsap.to(card, {
-          y: -10,
-          scale: 1.02,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-        gsap.to(card.querySelector('.project-glow'), {
-          opacity: 1,
-          duration: 0.3
-        });
-      });
-
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          y: 0,
-          scale: 1,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-        gsap.to(card.querySelector('.project-glow'), {
-          opacity: 0,
-          duration: 0.3
-        });
-      });
-    });
-
-  }, []);
+  // Removed GSAP scroll animations - using framer motion for consistency
 
   const projects = [
     {
@@ -125,18 +62,18 @@ const ProjectsSection = () => {
     <motion.section
       id="projects"
       className="py-20 px-6 relative"
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
     >
       <div className="projects-container container mx-auto max-w-7xl">
         <motion.h2
           className="projects-title text-4xl md:text-5xl font-bold text-center mb-16 text-glow"
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
         >
           Featured Projects
         </motion.h2>
@@ -146,12 +83,26 @@ const ProjectsSection = () => {
             <motion.div
               key={project.id}
               className="project-card relative glass-morphic rounded-2xl overflow-hidden group cursor-pointer"
-              initial={{ opacity: 0, y: 80, scale: 0.9 }}
+              initial={{ opacity: 0, y: 60, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: project.id * 0.1, ease: 'easeOut' }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ 
+                duration: 0.6, 
+                delay: project.id * 0.08, 
+                ease: [0.25, 0.1, 0.25, 1] 
+              }}
+              whileHover={{ 
+                y: -10, 
+                scale: 1.02,
+                transition: { duration: 0.3, ease: "easeOut" }
+              }}
             >
-              <div className="project-glow absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 opacity-0 transition-opacity duration-300"></div>
+              <motion.div 
+                className="project-glow absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              ></motion.div>
 
               <div className="relative h-48 overflow-hidden">
                 <img

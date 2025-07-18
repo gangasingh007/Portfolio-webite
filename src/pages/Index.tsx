@@ -19,15 +19,16 @@ const Index = () => {
   useEffect(() => {
     // Only initialize smooth scrolling after loading is complete
     if (!isLoading) {
-      // Initialize smooth scrolling with Lenis
+      // Initialize smooth scrolling with Lenis - optimized for framer motion
       const lenis = new (window as any).Lenis({
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        duration: 1.6,
+        easing: (t: number) => 1 - Math.pow(1 - t, 3), // easeOut cubic for smoother feel
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2,
+        wheelMultiplier: 0.8, // Reduced for smoother feel
+        touchMultiplier: 1.5,
+        infinite: false,
       });
 
       function raf(time: number) {
@@ -37,20 +38,17 @@ const Index = () => {
 
       requestAnimationFrame(raf);
 
-      // GSAP ScrollTrigger integration with Lenis
-      lenis.on('scroll', ScrollTrigger.update);
+      // Minimal GSAP integration - let framer motion handle most animations
+      lenis.on('scroll', () => {
+        ScrollTrigger.update();
+      });
 
+      // Smooth ticker integration
       gsap.ticker.add((time) => {
         lenis.raf(time * 1000);
       });
 
       gsap.ticker.lagSmoothing(0);
-
-      // Initialize main content animations after loading
-      gsap.fromTo("main", 
-        { opacity: 0 },
-        { opacity: 1, duration: 1, ease: "power2.out" }
-      );
 
       return () => {
         lenis.destroy();

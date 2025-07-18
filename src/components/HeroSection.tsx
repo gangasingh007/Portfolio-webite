@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { gsap } from 'gsap';
+import { motion } from 'framer-motion';
 
 const HeroSection = () => {
   useEffect(() => {
@@ -83,9 +84,20 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen relative flex items-center justify-center overflow-hidden">
+    <motion.section 
+      id="home" 
+      className="min-h-screen relative flex items-center justify-center overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.2, ease: "easeOut" }}
+    >
       {/* Background Spline 3D Model */}
-      <div className="spline-container absolute inset-0 z-0">
+      <motion.div 
+        className="spline-container absolute inset-0 z-0"
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.4, delay: 0.5, ease: "easeOut" }}
+      >
         <iframe 
           src='https://my.spline.design/orb-k58A6F3klVCeli1qGx8EwtuC/' 
           frameBorder='0' 
@@ -93,7 +105,7 @@ const HeroSection = () => {
           height='100%'
           className="w-full h-full"
         />
-      </div>
+      </motion.div>
 
       {/* Floating Orbs */}
       {/* {[...Array(8)].map((_, i) => (
@@ -111,19 +123,39 @@ const HeroSection = () => {
       ))} */}
 
       {/* Content */}
-      <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
-        <h1 className="hero-headline text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-glow leading-tight">
+      <motion.div 
+        className="relative z-20 text-center px-6 max-w-4xl mx-auto"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+      >
+        <motion.h1 
+          className="hero-headline text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-glow leading-tight"
+          initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
+        >
           Hi, I'm{' '}
           <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
             Ganga Singh
           </span>
-        </h1>
+        </motion.h1>
         
-        <p className="hero-subtitle text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+        <motion.p 
+          className="hero-subtitle text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+        >
           Full Stack Web Developer crafting immersive digital experiences with cutting-edge technologies
-        </p>
+        </motion.p>
 
-        <div className="hero-cta">
+        <motion.div 
+          className="hero-cta"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.7, ease: "backOut" }}
+        >
           <Button 
             onClick={scrollToContact}
             className="hero-cta-btn bg-gradient-to-r from-primary to-secondary hover:from-accent hover:to-primary text-lg px-8 py-4 rounded-full glow-effect group"
@@ -131,12 +163,12 @@ const HeroSection = () => {
             Hire Me
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
           </Button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
-    </section>
+    </motion.section>
   );
 };
 

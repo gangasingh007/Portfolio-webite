@@ -8,66 +8,7 @@ import { motion } from 'framer-motion';
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutSection = () => {
-  useEffect(() => {
-    const aboutTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".about-container",
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse"
-      }
-    });
-
-    gsap.set(".about-image", { opacity: 0, x: -100, scale: 0.8 });
-    gsap.set(".about-content", { opacity: 0, y: 50 });
-    gsap.set(".skill-icon", { opacity: 0, y: 30, scale: 0.8 });
-
-    aboutTimeline
-      .to(".about-image", {
-        opacity: 1,
-        x: 0,
-        scale: 1,
-        duration: 1,
-        ease: "power3.out"
-      })
-      .to(".about-content", {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "-=0.5")
-      .to(".skill-icon", {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: "back.out(1.7)"
-      }, "-=0.3");
-
-    // Profile image hover effect
-    const profileImage = document.querySelector('.profile-image');
-    if (profileImage) {
-      profileImage.addEventListener('mouseenter', () => {
-        gsap.to(profileImage, {
-          scale: 1.05,
-          rotation: 5,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-      
-      profileImage.addEventListener('mouseleave', () => {
-        gsap.to(profileImage, {
-          scale: 1,
-          rotation: 0,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-    }
-
-  }, []);
+  // Removed GSAP scroll animations - using framer motion for consistency
 
   const skills = [
     { name: 'HTML5', icon: 'i-ph-file-html' },
@@ -84,28 +25,30 @@ const AboutSection = () => {
     <motion.section
       id="about"
       className="py-14 px-3 sm:py-16 sm:px-6 md:py-20 md:px-8 relative"
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.7, ease: 'easeOut' }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
     >
       <div className="about-container mx-auto max-w-6xl w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Profile Image */}
           <motion.div
             className="about-image flex justify-center lg:justify-start mb-10 lg:mb-0"
-            initial={{ opacity: 0, x: -60, scale: 0.9 }}
+            initial={{ opacity: 0, x: -80, scale: 0.8 }}
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <div className="relative">
               <motion.div
                 className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full glass-morphic glow-purple p-2 sm:p-4"
-                initial={{ scale: 0.9, opacity: 0 }}
+                initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.8, delay: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+                whileHover={{ scale: 1.05, rotate: 5 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <img
                   src="/lovable-uploads/6e3785ea-e9c2-4e22-8e31-0f42a7ce2865.png"
