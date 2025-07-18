@@ -21,14 +21,15 @@ const Index = () => {
     if (!isLoading) {
       // Initialize smooth scrolling with Lenis - optimized for framer motion
       const lenis = new (window as any).Lenis({
-        duration: 1.6,
-        easing: (t: number) => 1 - Math.pow(1 - t, 3), // easeOut cubic for smoother feel
+        duration: 1.4,
+        easing: (t: number) => 1 - Math.pow(1 - t, 2.5), // Smoother easing
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 0.8, // Reduced for smoother feel
-        touchMultiplier: 1.5,
+        wheelMultiplier: 0.6, // Reduced for ultra smooth feel
+        touchMultiplier: 1.2,
         infinite: false,
+        normalizeWheel: true,
       });
 
       function raf(time: number) {

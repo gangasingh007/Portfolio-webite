@@ -62,18 +62,18 @@ const ProjectsSection = () => {
     <motion.section
       id="projects"
       className="py-20 px-6 relative"
-      initial={{ opacity: 0, y: 60 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
     >
       <div className="projects-container container mx-auto max-w-7xl">
         <motion.h2
           className="projects-title text-4xl md:text-5xl font-bold text-center mb-16 text-glow"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
         >
           Featured Projects
         </motion.h2>
@@ -83,18 +83,18 @@ const ProjectsSection = () => {
             <motion.div
               key={project.id}
               className="project-card relative glass-morphic rounded-2xl overflow-hidden group cursor-pointer"
-              initial={{ opacity: 0, y: 60, scale: 0.9 }}
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{ 
-                duration: 0.6, 
-                delay: project.id * 0.08, 
+                duration: 0.5, 
+                delay: project.id * 0.06, 
                 ease: [0.25, 0.1, 0.25, 1] 
               }}
               whileHover={{ 
-                y: -10, 
+                y: -8, 
                 scale: 1.02,
-                transition: { duration: 0.3, ease: "easeOut" }
+                transition: { duration: 0.25, ease: "easeOut" }
               }}
             >
               <motion.div 
